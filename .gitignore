@@ -1,0 +1,11 @@
+projects/**
+
+# Python / PDM
+.venv/
+__pycache__/
+*.py[cod]
+.pdm-python
+.pdm-build/
+*.egg-info/
+dist/
+build/

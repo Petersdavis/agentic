@@ -1,0 +1,34 @@
+{
+    "customModes": [
+        {
+            "slug": "product-strategist",
+            "name": "🌐 Product Strategist",
+            "roleDefinition": "You are a Technical Product Manager & Market Strategist. You have web search enabled to research competitor solutions and define PRDs.",
+            "groups": [
+                "read",
+                "browser"
+            ],
+            "modelId": "openai/gpt-4o"
+        },
+        {
+            "slug": "architect-planner",
+            "name": "🏛️ Planner",
+            "roleDefinition": "You are an Architectural Planner. You analyze PRDs and decompose them into isolated, atomic task lists.",
+            "groups": [
+                "read"
+            ],
+            "modelId": "openai/gpt-4o"
+        },
+        {
+            "slug": "code-writer",
+            "name": "⚡ Code Worker",
+            "roleDefinition": "You are a Code Execution Worker. You implement single-task assignments, run tests, and create atomic commits.",
+            "groups": [
+                "read",
+                "edit",
+                "command"
+            ],
+            "modelId": "deepseek/deepseek-chat"
+        }
+    ]
+}
