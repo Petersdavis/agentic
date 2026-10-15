@@ -1,0 +1,18 @@
+{
+  "id": "orchestrator-graph-enhancement",
+  "title": "Production LangGraph StateGraph Implementation",
+  "phase": "phase-4-orchestrator-tools",
+  "status": "pending",
+  "requirements": [
+    "Replace stubs in .shared_orchestrator/graph.py with real agent invocations.",
+    "Ensure code_writer runs autonomously with tool-calling loop until validation passes.",
+    "Implement reviewer running automated test commands inside container, checking git diff, and setting done or incrementing attempt count up to circuit breaker (3 attempts)."
+  ],
+  "context": [
+    ".shared_orchestrator/graph.py"
+  ],
+  "depends_on": [
+    "orchestrator-workspace-lifecycle"
+  ],
+  "notes": ""
+}

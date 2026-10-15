@@ -1,0 +1,17 @@
+{
+  "id": "docker-android-image",
+  "title": "Dockerfile for Android Projects",
+  "phase": "phase-2-docker",
+  "status": "pending",
+  "requirements": [
+    "Create docker/android/Dockerfile with OpenJDK 17, Android SDK Command-line Tools (cmdline-tools, platform-tools, platforms, build-tools), Gradle, Git, and jq.",
+    "Verify headless ./gradlew check and SDK licenses acceptance."
+  ],
+  "context": [
+    "docker/android/**"
+  ],
+  "depends_on": [
+    "docker-firebase-image"
+  ],
+  "notes": ""
+}

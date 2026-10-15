@@ -1,0 +1,18 @@
+{
+  "id": "docker-pdm-image",
+  "title": "Dockerfile for Python / PDM Development",
+  "phase": "phase-2-docker",
+  "status": "in_progress",
+  "requirements": [
+    "Create docker/pdm/Dockerfile with Python 3.12+, PDM, Git, and jq.",
+    "Verify build and executable availability (pdm --version, jq --version, git --version).",
+    "Include non-root user matching host UID/GID to avoid permission collisions during volume mounting."
+  ],
+  "context": [
+    "docker/pdm/**"
+  ],
+  "depends_on": [
+    "secrets-env-management"
+  ],
+  "notes": ""
+}

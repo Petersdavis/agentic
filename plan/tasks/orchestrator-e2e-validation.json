@@ -1,0 +1,18 @@
+{
+  "id": "orchestrator-e2e-validation",
+  "title": "End-to-End Autonomous Execution Validation",
+  "phase": "phase-5-verification",
+  "status": "pending",
+  "requirements": [
+    "Run an end-to-end autonomous execution test on a sample task.",
+    "Verify full transition from pending -> in_progress -> review -> done with zero human intervention."
+  ],
+  "context": [
+    ".shared_orchestrator/**",
+    "tests/**"
+  ],
+  "depends_on": [
+    "orchestrator-graph-enhancement"
+  ],
+  "notes": ""
+}

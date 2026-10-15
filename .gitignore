@@ -1,4 +1,5 @@
 projects/**
+!projects/AGENTS.md
 
 # Python / PDM
 .venv/
@@ -9,3 +10,9 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Environment and Secrets
+.env
+.env.*
+!.env.example
+

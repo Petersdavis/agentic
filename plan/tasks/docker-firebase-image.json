@@ -1,0 +1,17 @@
+{
+  "id": "docker-firebase-image",
+  "title": "Dockerfile for Firebase & Full-Stack Node Projects",
+  "phase": "phase-2-docker",
+  "status": "pending",
+  "requirements": [
+    "Create docker/firebase/Dockerfile with Node.js LTS, npm, Firebase CLI (firebase-tools), Java JRE (for emulator suite), Git, and jq.",
+    "Validate that firebase --version and Java runtime run cleanly in headless mode."
+  ],
+  "context": [
+    "docker/firebase/**"
+  ],
+  "depends_on": [
+    "docker-pdm-image"
+  ],
+  "notes": ""
+}

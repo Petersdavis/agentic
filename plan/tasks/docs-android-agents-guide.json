@@ -1,0 +1,17 @@
+{
+  "id": "docs-android-agents-guide",
+  "title": "Create Android Agent Guide (docs/android.AGENTS.md)",
+  "phase": "phase-3-docs",
+  "status": "pending",
+  "requirements": [
+    "Document Android conventions: Gradle build lifecycle, Robolectric unit tests, linting, and headless validation.",
+    "Specify expected build directories and artifact paths."
+  ],
+  "context": [
+    "docs/android.AGENTS.md"
+  ],
+  "depends_on": [
+    "docs-firebase-agents-guide"
+  ],
+  "notes": ""
+}

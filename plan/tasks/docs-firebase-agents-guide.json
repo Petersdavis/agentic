@@ -1,0 +1,17 @@
+{
+  "id": "docs-firebase-agents-guide",
+  "title": "Create Firebase Agent Guide (docs/firebase.AGENTS.md)",
+  "phase": "phase-3-docs",
+  "status": "pending",
+  "requirements": [
+    "Document Firebase architecture: Cloud Functions, Firestore Security Rules, hosting, and local emulator execution (firebase emulators:exec).",
+    "Detail deterministic test strategies against emulators without external network calls."
+  ],
+  "context": [
+    "docs/firebase.AGENTS.md"
+  ],
+  "depends_on": [
+    "docs-pdm-agents-guide"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,20 @@
+{
+  "id": "orchestrator-core-tools",
+  "title": "Core Execution Tools for Orchestrator",
+  "phase": "phase-4-orchestrator-tools",
+  "status": "pending",
+  "requirements": [
+    "Implement LangChain tool definitions in .shared_orchestrator/tools/.",
+    "file_tools.py: Read file, write/edit file atomically.",
+    "bash_tools.py: Execute shell commands with timeout handling.",
+    "git_tools.py: Branch/worktree creation, commit, diff inspection.",
+    "docker_tools.py: Execute task commands inside the appropriate Docker container."
+  ],
+  "context": [
+    ".shared_orchestrator/tools/**"
+  ],
+  "depends_on": [
+    "docs-android-agents-guide"
+  ],
+  "notes": ""
+}

@@ -1,0 +1,18 @@
+{
+  "id": "orchestrator-workspace-lifecycle",
+  "title": "Ephemeral Workspace Lifecycle Manager",
+  "phase": "phase-4-orchestrator-tools",
+  "status": "pending",
+  "requirements": [
+    "Implement workspace manager to provision ephemeral Git worktrees for assigned tasks.",
+    "Coordinate container mounting for the ephemeral worktree.",
+    "Handle clean teardown and merging upon reviewer approval."
+  ],
+  "context": [
+    ".shared_orchestrator/workspace.py"
+  ],
+  "depends_on": [
+    "orchestrator-model-harness"
+  ],
+  "notes": ""
+}

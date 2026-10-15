@@ -1,0 +1,19 @@
+{
+  "id": "orchestrator-model-harness",
+  "title": "Multi-Model Provider Harness & Role Prompt Engine",
+  "phase": "phase-4-orchestrator-tools",
+  "status": "pending",
+  "requirements": [
+    "Implement model factory in .shared_orchestrator/models.py supporting Anthropic, OpenAI, DeepSeek, and Gemini using standard LangChain interfaces.",
+    "Dynamically load role definitions from .shared_orchestrator/roles/*.md and format system messages.",
+    "Bind corresponding tools to code_writer and reviewer."
+  ],
+  "context": [
+    ".shared_orchestrator/models.py",
+    ".shared_orchestrator/roles/**"
+  ],
+  "depends_on": [
+    "orchestrator-core-tools"
+  ],
+  "notes": ""
+}

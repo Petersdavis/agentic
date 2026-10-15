@@ -1,0 +1,17 @@
+{
+  "id": "docs-pdm-agents-guide",
+  "title": "Create PDM Agent Guide (docs/pdm.AGENTS.md)",
+  "phase": "phase-3-docs",
+  "status": "pending",
+  "requirements": [
+    "Define PDM project conventions: dependency resolution, virtualenvs, pdm run pytest, linting, and formatting.",
+    "Document container mount commands and workspace isolation patterns."
+  ],
+  "context": [
+    "docs/pdm.AGENTS.md"
+  ],
+  "depends_on": [
+    "docker-android-image"
+  ],
+  "notes": ""
+}

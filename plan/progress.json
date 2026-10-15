@@ -1,0 +1,226 @@
+{
+  "project": "agentic",
+  "description": "Autonomous multi-agent multi-project orchestrator wrapper. Coordinates serial execution across subprojects using LangGraph, Docker containerization, and ephemeral Git workspaces.",
+  "status_values": [
+    "pending",
+    "in_progress",
+    "blocked",
+    "review",
+    "done"
+  ],
+  "tasks": [
+    {
+      "id": "secrets-env-management",
+      "title": "Secrets & Environment Key Management Architecture",
+      "phase": "phase-1-keys",
+      "status": "done",
+      "requirements": [
+        "Define .env.example documenting runtime keys: ANTHROPIC_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY, DEEPSEEK_API_KEY.",
+        "Implement .shared_orchestrator/config.py to validate and load credentials safely at runtime.",
+        "Ensure credential forwarding logic can inject environment variables into Docker containers without persisting secrets to images or git."
+      ],
+      "context": [
+        ".shared_orchestrator/config.py",
+        ".env.example"
+      ],
+      "depends_on": [],
+      "notes": ""
+    },
+    {
+      "id": "docker-pdm-image",
+      "title": "Dockerfile for Python / PDM Development",
+      "phase": "phase-2-docker",
+      "status": "in_progress",
+      "requirements": [
+        "Create docker/pdm/Dockerfile with Python 3.12+, PDM, Git, and jq.",
+        "Verify build and executable availability (pdm --version, jq --version, git --version).",
+        "Include non-root user matching host UID/GID to avoid permission collisions during volume mounting."
+      ],
+      "context": [
+        "docker/pdm/**"
+      ],
+      "depends_on": [
+        "secrets-env-management"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "docker-firebase-image",
+      "title": "Dockerfile for Firebase & Full-Stack Node Projects",
+      "phase": "phase-2-docker",
+      "status": "pending",
+      "requirements": [
+        "Create docker/firebase/Dockerfile with Node.js LTS, npm, Firebase CLI (firebase-tools), Java JRE (for emulator suite), Git, and jq.",
+        "Validate that firebase --version and Java runtime run cleanly in headless mode."
+      ],
+      "context": [
+        "docker/firebase/**"
+      ],
+      "depends_on": [
+        "docker-pdm-image"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "docker-android-image",
+      "title": "Dockerfile for Android Projects",
+      "phase": "phase-2-docker",
+      "status": "pending",
+      "requirements": [
+        "Create docker/android/Dockerfile with OpenJDK 17, Android SDK Command-line Tools (cmdline-tools, platform-tools, platforms, build-tools), Gradle, Git, and jq.",
+        "Verify headless ./gradlew check and SDK licenses acceptance."
+      ],
+      "context": [
+        "docker/android/**"
+      ],
+      "depends_on": [
+        "docker-firebase-image"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "docs-pdm-agents-guide",
+      "title": "Create PDM Agent Guide (docs/pdm.AGENTS.md)",
+      "phase": "phase-3-docs",
+      "status": "pending",
+      "requirements": [
+        "Define PDM project conventions: dependency resolution, virtualenvs, pdm run pytest, linting, and formatting.",
+        "Document container mount commands and workspace isolation patterns."
+      ],
+      "context": [
+        "docs/pdm.AGENTS.md"
+      ],
+      "depends_on": [
+        "docker-android-image"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "docs-firebase-agents-guide",
+      "title": "Create Firebase Agent Guide (docs/firebase.AGENTS.md)",
+      "phase": "phase-3-docs",
+      "status": "pending",
+      "requirements": [
+        "Document Firebase architecture: Cloud Functions, Firestore Security Rules, hosting, and local emulator execution (firebase emulators:exec).",
+        "Detail deterministic test strategies against emulators without external network calls."
+      ],
+      "context": [
+        "docs/firebase.AGENTS.md"
+      ],
+      "depends_on": [
+        "docs-pdm-agents-guide"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "docs-android-agents-guide",
+      "title": "Create Android Agent Guide (docs/android.AGENTS.md)",
+      "phase": "phase-3-docs",
+      "status": "pending",
+      "requirements": [
+        "Document Android conventions: Gradle build lifecycle, Robolectric unit tests, linting, and headless validation.",
+        "Specify expected build directories and artifact paths."
+      ],
+      "context": [
+        "docs/android.AGENTS.md"
+      ],
+      "depends_on": [
+        "docs-firebase-agents-guide"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "orchestrator-core-tools",
+      "title": "Core Execution Tools for Orchestrator",
+      "phase": "phase-4-orchestrator-tools",
+      "status": "pending",
+      "requirements": [
+        "Implement LangChain tool definitions in .shared_orchestrator/tools/.",
+        "file_tools.py: Read file, write/edit file atomically.",
+        "bash_tools.py: Execute shell commands with timeout handling.",
+        "git_tools.py: Branch/worktree creation, commit, diff inspection.",
+        "docker_tools.py: Execute task commands inside the appropriate Docker container."
+      ],
+      "context": [
+        ".shared_orchestrator/tools/**"
+      ],
+      "depends_on": [
+        "docs-android-agents-guide"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "orchestrator-model-harness",
+      "title": "Multi-Model Provider Harness & Role Prompt Engine",
+      "phase": "phase-4-orchestrator-tools",
+      "status": "pending",
+      "requirements": [
+        "Implement model factory in .shared_orchestrator/models.py supporting Anthropic, OpenAI, DeepSeek, and Gemini using standard LangChain interfaces.",
+        "Dynamically load role definitions from .shared_orchestrator/roles/*.md and format system messages.",
+        "Bind corresponding tools to code_writer and reviewer."
+      ],
+      "context": [
+        ".shared_orchestrator/models.py",
+        ".shared_orchestrator/roles/**"
+      ],
+      "depends_on": [
+        "orchestrator-core-tools"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "orchestrator-workspace-lifecycle",
+      "title": "Ephemeral Workspace Lifecycle Manager",
+      "phase": "phase-4-orchestrator-tools",
+      "status": "pending",
+      "requirements": [
+        "Implement workspace manager to provision ephemeral Git worktrees for assigned tasks.",
+        "Coordinate container mounting for the ephemeral worktree.",
+        "Handle clean teardown and merging upon reviewer approval."
+      ],
+      "context": [
+        ".shared_orchestrator/workspace.py"
+      ],
+      "depends_on": [
+        "orchestrator-model-harness"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "orchestrator-graph-enhancement",
+      "title": "Production LangGraph StateGraph Implementation",
+      "phase": "phase-4-orchestrator-tools",
+      "status": "pending",
+      "requirements": [
+        "Replace stubs in .shared_orchestrator/graph.py with real agent invocations.",
+        "Ensure code_writer runs autonomously with tool-calling loop until validation passes.",
+        "Implement reviewer running automated test commands inside container, checking git diff, and setting done or incrementing attempt count up to circuit breaker (3 attempts)."
+      ],
+      "context": [
+        ".shared_orchestrator/graph.py"
+      ],
+      "depends_on": [
+        "orchestrator-workspace-lifecycle"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "orchestrator-e2e-validation",
+      "title": "End-to-End Autonomous Execution Validation",
+      "phase": "phase-5-verification",
+      "status": "pending",
+      "requirements": [
+        "Run an end-to-end autonomous execution test on a sample task.",
+        "Verify full transition from pending -> in_progress -> review -> done with zero human intervention."
+      ],
+      "context": [
+        ".shared_orchestrator/**",
+        "tests/**"
+      ],
+      "depends_on": [
+        "orchestrator-graph-enhancement"
+      ],
+      "notes": ""
+    }
+  ]
+}

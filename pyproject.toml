@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Peter Davis",email = "petersdavis@gmail.com"},
 ]
-dependencies = ["langchain-core>=1.6.10", "langchain-anthropic>=1.7.6", "langgraph>=1.2.15"]
+dependencies = ["langchain-core>=1.6.10", "langchain-anthropic>=1.7.6", "langgraph>=1.2.15", "python-dotenv>=1.2.4", "langchain-openai>=1.7.2"]
 requires-python = "==3.14.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -13,3 +13,8 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
